@@ -44,7 +44,9 @@
                 <a href="#">Contacts</a>
             </div>
             <div class="hamburger-buttons">
-                <a href="/login" class="btn signIn-btn">Sign in</a>
+{{--                <a href="#" onclick="console.log('Redirecting...'); window.location.href = '${window.location.href}:3000/login;" class="btn signIn-btn">Sign in</a>--}}
+                <a href="#" onclick="console.log('Redirecting...'); window.location.href = window.location.protocol + '//' + window.location.hostname + ':3000';" class="btn signIn-btn">Sign in</a>
+                {{--                <a href="{{$window?.location?.href?.replace('8000', '3000')}}" class="btn signIn-btn">Sign in</a>--}}
                 <a href="{{route('demo')}}" class="btn book-demo-btn">Book a demo</a>
             </div>
         </div>
@@ -64,7 +66,7 @@
                 </nav>
             </div>
             <div class="header-buttons">
-                <a href="/login" class="btn signIn-btn">Sign in</a>
+                <a href="#" onclick="console.log('Redirecting...'); window.location.href = window.location.protocol + '//' + window.location.hostname + ':3000';"  class="btn signIn-btn">Sign in</a>
                 <a href="{{route('demo')}}" class="btn book-demo-btn">Book a demo</a>
                 <div class="lines">
                     <div class="line"></div>
@@ -86,7 +88,7 @@
                     <img src="/assets/images/icons/logo.svg" alt="1xFreight">
                 </a>
                 <div class="footer-nav">
-                    <a href="/login" target="_blank">Log in</a>
+                    <a href="#" onclick="console.log('Redirecting...'); window.location.href = window.location.protocol + '//' + window.location.hostname + ':3000';"  target="_blank">Log in</a>
                     <a href="#" target="_blank">Get started for free</a>
                     <a href="#">0-000-000-000</a>
                     <a href="#">hello@1xfreight.com</a>
