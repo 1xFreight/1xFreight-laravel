@@ -8,6 +8,8 @@
 <meta property="og:description" content="{{ $meta_tag->meta_description }}">
 <meta property="og:image" content="/assets/images/metas/{{$meta_tag->image}}">
 <meta property="og:site_name" content="{{ $meta_tag->title }}">
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/5.0.6/inputmask.min.js"></script>--}}
+
 @endif
 @endsection
 @section('content')
@@ -62,40 +64,40 @@
             <div class="inputs-box">
                 <div class="input-box">
                     <label for="company">Company <span>*</span></label>
-                    <input type="text" name="company" id="company" placeholder="Type here..." required>
+                    <input type="text" name="company" id="company" placeholder="Company INC" required>
                 </div>
                 <div class="input-box">
                     <label for="name">Contact Name <span>*</span></label>
-                    <input type="text" name="name" id="name" placeholder="Type here..." required>
+                    <input type="text" name="name" id="name" placeholder="Joe Doe" required>
                 </div>
             </div>
 
             <div class="inputs-box">
                 <div class="input-box">
                     <label for="email">Email <span>*</span></label>
-                    <input type="text" name="email" id="email" placeholder="Type here..." required>
+                    <input type="text" name="email" id="email" placeholder="exemple@email.com" required>
                 </div>
                 <div class="input-box">
                     <label for="phone">Phone <span>*</span></label>
-                    <input type="number" name="phone" id="phone" placeholder="Type here..." required>
+                    <input type="text" name="phone" id="phone" placeholder="+1 (xxx) xxx-xxxx" required>
                 </div>
             </div>
 
             <div class="inputs-box">
                 <div class="input-box">
                     <label for="company">Billing Address <span>*</span></label>
-                    <input type="text" name="billing_address" id="billing_address" placeholder="Type here..." required>
+                    <input type="text" name="billing_address" id="billing_address" placeholder="Billing address..." required>
                 </div>
                 <div class="input-box">
                     <label for="email">Billing Email <span>*</span></label>
-                    <input type="email" name="billing_email" id="billing_email" placeholder="Type here..." required>
+                    <input type="email" name="billing_email" id="billing_email" placeholder="billing@email.com" required>
                 </div>
             </div>
 
             <div class="inputs-box">
                 <div class="input-box">
-                    <label for="phone">Biiling Phone <span>*</span></label>
-                    <input type="text" name="billing_phone" id="billing_phone" placeholder="Type here..." required>
+                    <label for="billing_phone">Billing Phone <span>*</span></label>
+                    <input type="text" name="billing_phone" id="billing_phone" placeholder="+1 (xxx) xxx-xxxx" required>
                 </div>
 
                 <div class="inputs-box">
@@ -177,4 +179,10 @@
     });
 </script>
 
+
+<script>
+     const phoneInput = document.getElementById('phone');
+    const phoneMask = new Inputmask('+1 (999) 999-9999');
+    phoneMask.mask(phoneInput);
+</script>
 @endpush

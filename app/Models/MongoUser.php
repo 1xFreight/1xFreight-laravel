@@ -22,8 +22,14 @@ class MongoUser extends Model
         'billing_address',
         'billing_email',
         'billing_phone',
-        'estimate_number',
+        'estimated_quotes_demo',
         'created_at',
         'updated_at'
     ];
+
+    public function subscription()
+    {
+        return $this->hasOne(Subscription::class, 'user_id');
+    }
+
 }

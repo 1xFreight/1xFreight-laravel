@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DemoFormSubmission;
-use App\Models\MongoUser;
+ use App\Models\MongoUser;
 use Illuminate\Http\Request;
 use App\Models\MetaTag;
 
@@ -12,7 +11,6 @@ class DemoController extends Controller
     public function index()
     {
         $meta_tag = MetaTag::where('page', 'demo')->first();
-
         return view('demo', compact('meta_tag'));
     }
 
@@ -22,7 +20,7 @@ class DemoController extends Controller
             'company' => 'required|string',
             'name' => 'required|string',
             'email' => 'required|email',
-            'phone' => 'required|numeric',
+            'phone' => 'required', 'regex:/^\+1\(\d{3}\)\d{3}-\d{4}$/',
             'billing_address' => 'required|string',
             'billing_email' => 'required|email',
             'billing_phone' => 'required|numeric',

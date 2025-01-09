@@ -11,11 +11,20 @@
         </div>
         <div class="dash-card">
             <div class="container">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="POST" action="{{ route('dashboard.booking.update', $user->id) }}">
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <h6 class="mb-3 book-header">Company</h6>
+                        <h6 class="mb-3 book-header">Company > <strong>{{ $user->company }}</strong></h6>
                         <div class="col-lg-3 col-md-6 col-12 mb-3">
                             <div class="form-group">
                                 <label>Company</label>
@@ -84,7 +93,7 @@
                                     class="form-control"
                                     min="0"
                                     max="21"
-                                    value="{{ old('free_trial_days', 7) }}"
+                                    value="{{ $subscription->free_trial_days ?? '0' }}"
                                     required>
                             </div>
 
@@ -98,12 +107,12 @@
                         <div class="col-lg-3 col-md-6 col-12 mb-3">
                             <div class="form-group">
                                 <label>Price</label>
-                                <select name="price" class="form-control">
+                                <select name="subscription" class="form-control">
                                     @foreach($products->data as $product)
                                         <optgroup label="{{ $product->name }}">
                                             @foreach($prices->data as $price)
                                                 @if($price->product == $product->id)
-                                                    <option value="{{ $price->id }}">
+                                                    <option value="{{ $price->unit_amount / 100 }}">
                                                         {{ $price->unit_amount / 100 }} {{ strtoupper($price->currency) }} -  {{ $price->price_description ?? 'No description' }}
                                                     </option>
                                                 @endif
@@ -119,7 +128,7 @@
                                 <select name="coupon" class="form-control">
                                     <option value="">Select coupon</option>
                                     @foreach($coupons->data as $coupon)
-                                        <option value="{{ $coupon->id }}">
+                                        <option value="{{ $coupon->amount_off }}">
                                             {{ $coupon->name ?? $coupon->id }} - {{ $coupon->amount_off ? $coupon->amount_off / 100 . ' ' . strtoupper($coupon->currency) : $coupon->percent_off . '% off' }}
                                         </option>
                                     @endforeach
@@ -129,12 +138,12 @@
                     </div>
 
                     <div class="d-flex justify-content-center">
+                        <a href="{{route('dashboard.booking.details', $user->id)}}"
+                           class="col-lg-3 col-md-4 col-6 btn btn-danger mt-4 mx-2">Cancel</a>
 
                         <button type="submit" class="col-lg-3 col-md-4 col-6 btn btn-primary mt-4 mx-2"><i
                                 class="bi bi-pencil mx-1"></i>Edit book
                         </button>
-                        <a href="{{route('dashboard.booking.details', $user->id)}}"
-                           class="col-lg-3 col-md-4 col-6 btn btn-danger mt-4 mx-2">Cancel</a>
                     </div>
                 </form>
             </div>

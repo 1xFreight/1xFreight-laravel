@@ -101,23 +101,31 @@
                     <div class="col-lg-3 col-md-6 col-12 mb-5">
                         <div class="edit-company">
                             Payment Date:
-                            <span> </span>
+                            <span>
+{!! $subscription && $subscription->payment_date ? \Carbon\Carbon::parse($subscription->payment_date)->format('m/d/Y') : 'N/A' !!}
+                            </span>
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-12 mb-5">
                         <div class="edit-company">
                             Subscription:
-                            <span>{!! $user->subscription !!}</span>
+                            <span>{!! $subscription->subscription ?? ' ' !!}</span>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-12 mb-5">
                         <div class="edit-company">
                             Coupon:
-                            <span>{!! $user->coupon !!}</span>
+                            <span>{!! $subscription->coupon ?? ' ' !!}</span>
                         </div>
                     </div>
                 </div>
+                <h5 class="mb-3">
+                    Final Monthly Subscription : {!! $subscription->final_monthly_price ?? 'null'!!}
+                    <hr>
+                </h5>
+
+
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('dashboard.booking') }}" class="col-lg-3 col-md-4 col-6 btn btn-primary mx-2"><i
                             class="bi bi-arrow-left mx-1"></i>Go back</a>
